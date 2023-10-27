@@ -25,7 +25,7 @@ class BooksController extends BaseController
     public function index(Request $request): JsonResponse
     {
         $user = Auth::user();
-        $books = Book::search(($request->get('query')) ?? '')->paginate(10)->withQueryString();;
+        $books = Book::search(($request->get('query')) ?? '')->paginate(10)->withQueryString();
         return $this->sendResponse(['totalCount'=>$books->total(),'books'=>BookResource::collection($books),'isLogedIn'=>  $user ? true : false,'isAdmin' => $user ? $user->isAdmin : false], 'Books retrieved successfully.');
     }
     /**
@@ -131,8 +131,9 @@ class BooksController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book): JsonResponse
+    public function destroy($id): JsonResponse
     {
+        $book = Book::where('id',$id)->first();
         $book->delete();
         return $this->sendResponse([], 'Book removed successfully.');
     }

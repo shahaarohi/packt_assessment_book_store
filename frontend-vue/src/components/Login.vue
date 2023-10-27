@@ -38,8 +38,9 @@
 
 <script>
 import { MDBContainer, MDBInput, MDBBtn } from "mdb-vue-ui-kit";
+import { useToast } from "vue-toast-notification";
 import { ref } from "vue";
-
+const $toast = useToast();
 
 export default {
   name: "LoginAdmin",
@@ -70,7 +71,10 @@ export default {
       if (response.success) {
         this.$router.push('/');
       } else {
-        alert(response);
+        // alert(response);
+        $toast.error(response, {
+              // optional options Object
+        });
       }
     },
   }

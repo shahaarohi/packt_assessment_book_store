@@ -57,7 +57,7 @@
       <MDBBtn color="primary" @click="previousPage" :disabled="currentPage === 1">
         Previous
       </MDBBtn>
-      <MDBBtn color="primary" @click="nextPage" :disabled="books.length === 0 || books.length < 10">
+      <MDBBtn color="primary" @click="nextPage" :disabled="books.length === 0">
         Next
       </MDBBtn>
     </div>
